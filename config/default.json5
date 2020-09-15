@@ -1,0 +1,81 @@
+{
+  amqp: {
+    rd: {
+      queue: {
+        name: "ms3-save-data.rd",
+      },
+      exchanger: {
+        type: "fanout",
+        options: {
+          durable: true
+        }
+      }
+    },
+    websocket: {
+      exchanger: {
+        routing_keys: {
+          save_data: 'save_data',
+          notice: 'notification'
+        },
+        type: "direct",
+        options: {
+          durable: true
+        }
+      }
+    },
+    try_connecting_retry_times: 3,
+    sleep_time: 2
+  },
+
+  log4js: {
+    "appenders": {
+      "out": {
+        "type": "stdout"
+      },
+      "mq": {
+        "type": "@log4js-node/rabbitmq",
+        "routing_key": "logstash",
+        "mq_type": "direct",
+        "durable": true,
+        "layout": {
+          type: "logstash"
+        }
+      },
+      "app": {
+        "type": "file",
+        "filename": "log/app.log",
+        "maxLogSize": 10485760,
+        "backups": 3,
+        "compress": true
+      },
+      "errorFile": {
+        "type": "file",
+        "maxLogSize": 10485760,
+        "backups": 3,
+        "compress": true,
+        "filename": "log/errors.log"
+      },
+      "errors": {
+        "type": "logLevelFilter",
+        "level": "ERROR",
+        "appender": "errorFile"
+      },
+      "appInfo": {
+        "type": "logLevelFilter",
+        "level": "INFO",
+        "appender": "app"
+      }
+    },
+    "categories": {
+      "default": {
+        "appenders": [
+          "appInfo",
+          "errors",
+          "out",
+          "mq"
+        ],
+        "level": "DEBUG"
+      }
+    }
+  }
+}

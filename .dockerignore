@@ -1,0 +1,14 @@
+.idea
+.git
+.gitignore
+.dockerignore
+node_modules
+Dockerfile
+log
+dist
+.env
+.env.dist
+.nvmrc
+README.md
+tslint.json
+Makefile

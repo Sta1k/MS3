@@ -1,0 +1,44 @@
+{
+  "amqp": {
+    "url": "AMQP_URL",
+    "port": "AMQP_PORT",
+    "vhost": "AMQP_VHOST",
+    "login": "AMQP_LOGIN",
+    "password": "AMQP_PASSWORD",
+    rd: {
+      exchanger: {
+        name: "AMQP_RD_EXCHANGE",
+      },
+    },
+    websocket: {
+      exchanger: {
+        name: "AMQP_WS_EXCHANGE"
+      }
+    },
+  },
+  "mongo": {
+    "host": "MONGO_HOST",
+    "port": "MONGO_PORT",
+    "user": "MONGO_USER",
+    "db_auth": "MONGO_DB_AUTH",
+    "password": "MONGO_PASSWORD",
+    "rs": "MONGO_RS"
+  },
+  app: {
+    port: "APP_PORT",
+    log_level: "LOG_LEVEL",
+    service_id: "SERVICE_ID"
+  },
+  log4js: {
+    appenders: {
+      mq: {
+        host: "AMQP_URL",
+        port: "AMQP_PORT",
+        vhost: "AMQP_VHOST" ,
+        username: "AMQP_LOGIN",
+        password: "AMQP_PASSWORD",
+        exchange: "AMQP_LOGGING_EXCHANGE",
+      }
+    }
+  }
+}
